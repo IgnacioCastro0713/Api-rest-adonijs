@@ -94,7 +94,10 @@ module.exports = {
     | response.send('Hello', { ignoreEtag: true })
     |
     */
-    etag: false
+    etag: false,
+
+
+    loggerEnv: ['development', 'production']
   },
 
   views: {

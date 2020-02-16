@@ -18,7 +18,7 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @param  {Object} options.request
    * @param  {Object} options.response
    *
-   * @return {void}
+   * @return {Mixed}
    */
   async handle (error, { request, response }) {
     if (error.name === 'InvalidJwtToken' && error.status === 401) {
