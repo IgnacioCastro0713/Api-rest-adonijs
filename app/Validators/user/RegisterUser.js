@@ -8,25 +8,16 @@ class RegisterUser {
 
   get rules () {
     return {
-      username: 'required',
+      name: 'required',
+      last_name: 'required',
       email: 'required|email|unique:users',
       password: 'required'
     }
   }
 
-  get messages () {
-    return {
-      'username.required': 'You must provide a username.',
-      'email.required': 'You must provide a email address.',
-      'email.email': 'You must provide a valid email address.',
-      'email.unique': 'This email is already registered.',
-      'password.required': 'You must provide a password'
-    }
-  }
-
-  async fails (errorMessages) {
+  async fails (errors) {
     return await this.ctx.response.status(400).json({
-      errorMessages
+      errors: errors
     })
   }
 }

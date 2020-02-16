@@ -20,12 +20,20 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async handle(error, {request, response}) {
-    if (error.name === 'InvalidJwtToken')
-      response.status(error.status).json({
+  async handle (error, { request, response }) {
+    if (error.name === 'InvalidJwtToken' && error.status === 401) {
+      return response.status(error.status).json({
+        status: error.status,
         name: error.name,
         message: error.message
-      })
+      });
+    }
+
+    response.status(error.status).json({
+      status: error.status,
+      name:error.name,
+      message: error.message
+    })
   }
 
   /**
@@ -38,8 +46,8 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async report(error, {request}) {
+  async report (error, { request }) {
   }
 }
 
-module.exports = ExceptionHandler
+module.exports = ExceptionHandler;
