@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const BaseExceptionHandler = use('BaseExceptionHandler')
+const BaseExceptionHandler = use('BaseExceptionHandler');
 
 /**
  * This class handles all exceptions thrown during
@@ -21,15 +21,7 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @return {Mixed}
    */
   async handle (error, { request, response }) {
-    if (error.name === 'InvalidJwtToken' && error.status === 401) {
-      return response.status(error.status).json({
-        status: error.status,
-        name: error.name,
-        message: error.message
-      });
-    }
-
-    response.status(error.status).json({
+    return response.status(error.status).json({
       status: error.status,
       name:error.name,
       message: error.message
